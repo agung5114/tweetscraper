@@ -24,7 +24,7 @@ def getData(keyword,start,end,n):
     tweets_list2 = []
     # Using TwitterSearchScraper to scrape data and append tweets to list
     for i,tweet in enumerate(sntwitter.TwitterSearchScraper(f'{keyword} since:{from_date} until:{end_date}').get_items()):
-        if i>n:
+        if i>(n-1):
             break
         tweets_list2.append([tweet.date, tweet.id, tweet.username,tweet.retweetCount, tweet.content])
         # tweet.retweetCount
