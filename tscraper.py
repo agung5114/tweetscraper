@@ -43,14 +43,20 @@ with k4:
 
 # if choice =="Dashboard":
 if st.button("Run Scraping"):
-    data= getData(search_term,from_date,end_date,numb)
-    AgGrid(data)
-    csv = convert_df(data)
+    try:
+        data= getData(search_term,from_date,end_date,numb)
+        st.write(f"{len(data.index)} data found")
+        AgGrid(data)
+        csv = convert_df(data)
 
-    st.download_button(
-    "Press to Download",
-    csv,
-    "file.csv",
-    "text/csv",
-    key='download-csv'
-    )
+        st.download_button(
+        "Press to Download",
+        csv,
+        "file.csv",
+        "text/csv",
+        key='download-csv'
+        )
+    except:
+        st.subheader("No Data Found")
+    
+    
