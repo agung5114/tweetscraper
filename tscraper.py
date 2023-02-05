@@ -19,17 +19,29 @@ st.markdown('<style>h1{color:dark-grey;font-size:62px}</style>',unsafe_allow_htm
 def convert_df(df):
    return df.to_csv().encode('utf-8')
 
+# @st.cache
+# def getData(keyword,start,end,n):
+#     tweets_list2 = []
+#     # Using TwitterSearchScraper to scrape data and append tweets to list
+#     for i,tweet in enumerate(sntwitter.TwitterSearchScraper(f'{keyword} since:{from_date} until:{end_date}').get_items()):
+#         if i>(n-1):
+#             break
+#         tweets_list2.append([tweet.date, tweet.id, tweet.username,tweet.retweetCount, tweet.content])
+#         # tweet.retweetCount
+#         df = pd.DataFrame(tweets_list2, columns=['Datetime', 'Tweet Id', 'Username','Retweeted','Text'])
+#     return df.sort_values(by='Retweeted',ascending=False)
+
 @st.cache
 def getData(keyword,start,end,n):
-    tweets_list2 = []
-    # Using TwitterSearchScraper to scrape data and append tweets to list
-    for i,tweet in enumerate(sntwitter.TwitterSearchScraper(f'{keyword} since:{from_date} until:{end_date}').get_items()):
-        if i>(n-1):
-            break
-        tweets_list2.append([tweet.date, tweet.id, tweet.username,tweet.retweetCount, tweet.content])
-        # tweet.retweetCount
-        df = pd.DataFrame(tweets_list2, columns=['Datetime', 'Tweet Id', 'Username','Retweeted','Text'])
-    return df.sort_values(by='Retweeted',ascending=False)
+    searchtopic = keyword.replace(' ', '')
+    start = from_date.strftime("%Y-%m-%d")
+    end = end_date.strftime("%Y-%m-%d")
+    number = n
+    url = f"https://mofdac.id/livesearch/{searchtopic}/{start}/{end}/{number}"
+    response = urlopen(url)
+    data_json = json.loads(response.read())
+    df = pd.DataFrame.from_dict(data_json['data'])
+    return df
 
 k1,k2,k3,k4 = st.columns((1,1,1,1))
 with k1:
