@@ -2,3 +2,4 @@ streamlit
 streamlit-aggrid
 pandas
 git+https://github.com/JustAnotherArchivist/snscrape.git
+plotly-express
