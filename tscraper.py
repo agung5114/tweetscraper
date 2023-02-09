@@ -111,7 +111,7 @@ if choice == "Daily Trends":
    topic = st.selectbox("Select Menu", topiclist['keyword'])
    seldate = st.date_input("choose date")
    dft = get_data(f"https://maindata.mofdac.id/dailyretweet/{topic}/{seldate}")
-
+   st.write(dft)
    # dft['Date'] = dft['Datetime'].apply(lambda x : pd.to_datetime(str(x)))
 #    dft['Datetime'] = dft['Datetime'].astype('str')
 #    dft['Date'] = dft['Datetime'].str[:10]
@@ -127,7 +127,7 @@ if choice == "Daily Trends":
                y='Retweeted',
                color='Username',
                color_discrete_map=sentcolor,
-               title=gtitle,
+#                title=gtitle,
                labels={'x': 'Time', 'y': 'Number of Tweet'}
                )
 
