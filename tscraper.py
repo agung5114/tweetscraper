@@ -62,7 +62,7 @@ if st.button("Run Scraping"):
    data= getData(search_term,from_date,end_date,numb)
    st.write(f"{len(data.index)} data found")
    data = data[['Datetime','Username','Likes','Retweeted','Sentiment','Text']]
-   AgGrid(data)
+   AgGrid(data,columns_auto_size_mode=ColumnsAutoSizeMode.FIT_CONTENTS)
    csv = convert_df(data)
 
    st.download_button(
