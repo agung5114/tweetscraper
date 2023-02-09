@@ -3,6 +3,7 @@ import pandas as pd
 # import pickle 
 from st_aggrid import AgGrid
 from urllib.request import urlopen
+import json
 # from PIL import Image
 
 import snscrape.modules.twitter as sntwitter
@@ -13,7 +14,7 @@ import streamlit.components.v1 as components
 import datetime
 
 ##TOP PAGE
-st.subheader("MoF-DAC TweetScraper")
+st.subheader("MoFMAIN TweetScraper")
 st.markdown('<style>h1{color:dark-grey;font-size:62px}</style>',unsafe_allow_html=True)
 # st.image(Image.open('text.png'))
 @st.cache
