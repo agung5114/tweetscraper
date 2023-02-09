@@ -73,13 +73,6 @@ if st.button("Run Scraping"):
       "text/csv",
       key='download-csv'
       )
-   except:
-      st.write('No Data Found')
-      data = []
-
-   if data ==[]:
-      pass
-   else:
       c1, c2 = st.columns((1, 1))
       with c1:
          df1 = data
@@ -92,5 +85,5 @@ if st.button("Run Scraping"):
          fig2 = px.bar(df2b, x='Province', y='Total', color='Disaster')
          fig2.update_xaxes(title_text="")
          st.plotly_chart(fig2)
-    
-    
+   except:
+      st.write('No Data Found')
