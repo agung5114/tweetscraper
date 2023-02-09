@@ -108,7 +108,7 @@ if choice == "Live Search":
    #    st.write('No Data Found')
 if choice == "Daily Trends":
    topiclist = get_data('https://maindata.mofdac.id/list_keywords')
-   topic = st.selectbox("Select Menu", topiclist)
+   topic = st.selectbox("Select Menu", topiclist['keyword'])
    seldate = st.date_input("choose date")
    dft = get_data(f"https://maindata.mofdac.id/{topic}/{seldate}")
 
