@@ -25,6 +25,13 @@ st.markdown('<style>h1{color:dark-grey;font-size:62px}</style>',unsafe_allow_htm
 def convert_df(df):
    return df.to_csv().encode('utf-8')
 
+@st.cache
+def get_data(url):
+    response = urlopen(url)
+    data_json = json.loads(response.read())
+    df = pd.DataFrame.from_dict(data_json['data'])
+    return df
+
 # @st.cache
 # def getData(keyword,start,end,n):
 #     tweets_list2 = []
