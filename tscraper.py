@@ -51,12 +51,13 @@ k1,k2,k3,k4 = st.columns((1,1,1,1))
 with k1:
     search_term = st.text_input("Keyword")
 with k2:
-    from_date = st.date_input("from date",datetime.date(2022, 1, 1))
+    from_date = st.date_input("from date",datetime.date(2023, 1, 1))
 with k3:
     end_date = st.date_input("until date")
 with k4:
     numb= st.number_input("Number to scrape",min_value=1,max_value=1000,step=10,value=10)
 
+colr = {'negative':'lightcoral','positive':'green','neutral':'lightblue'}
 # if choice =="Dashboard":
 if st.button("Run Scraping"):
 #    try:
@@ -77,13 +78,13 @@ if st.button("Run Scraping"):
    c1, c2 = st.columns((1, 1))
    with c1:
       df1 = data
-      fig1 = px.pie(df1, names='Sentiment', values='Retweeted', color='Sentiment', hole=.6)
+      fig1 = px.pie(df1, names='Sentiment', values='Retweeted', color='Sentiment', hole=.6,color_discrete_map=colr)
       st.plotly_chart(fig1)
 
    with c2:
       data['Date'] = pd.to_datetime(data['Datetime']).dt.date
       df2b = data.groupby(by=['Sentiment','Date'],as_index=False).agg({'Retweeted':'sum'})
-      fig2 = px.bar(df2b, x='Date', y='Retweeted', color='Sentiment')
+      fig2 = px.bar(df2b, x='Date', y='Retweeted', color='Sentiment',color_discrete_map=colr)
       fig2.update_xaxes(title_text="")
       st.plotly_chart(fig2)
 #    except:
