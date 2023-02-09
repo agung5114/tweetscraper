@@ -55,7 +55,7 @@ with k2:
 with k3:
     end_date = st.date_input("until date")
 with k4:
-    numb= st.number_input("Number to scrape",min_value=1,max_value=10000,step=100,value=100)
+    numb= st.number_input("Number to scrape",min_value=1,max_value=1000,step=10,value=10)
 
 # if choice =="Dashboard":
 if st.button("Run Scraping"):
