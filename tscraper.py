@@ -57,7 +57,7 @@ with k4:
 # if choice =="Dashboard":
 if st.button("Run Scraping"):
 #     try:
-   st.write(search_term+from_date+end_date+str(numb))
+   st.write(search_term+from_date.strftime("%Y-%m-%d")+end_date.strftime("%Y-%m-%d")+str(numb))
    data= getData(search_term,from_date,end_date,numb)
    st.write(f"{len(data.index)} data found")
    AgGrid(data)
