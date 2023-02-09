@@ -83,7 +83,7 @@ if st.button("Run Scraping"):
    with c2:
       data['Date'] = pd.to_datetime(data['Datetime']).dt.date
       df2b = data.groupby(by=['Sentiment','Date'],as_index=False).agg({'Retweeted':'sum'})
-      fig2 = px.bar(df2b, x='Province', y='Total', color='Disaster')
+      fig2 = px.bar(df2b, x='Date', y='Retweeted', color='Sentiment')
       fig2.update_xaxes(title_text="")
       st.plotly_chart(fig2)
 #    except:
