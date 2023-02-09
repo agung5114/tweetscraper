@@ -80,7 +80,7 @@ if st.button("Run Scraping"):
    key='download-csv'
    )
 
-try:
+# try:
    c1, c2 = st.columns((1, 1))
    with c1:
       df1 = data
@@ -93,5 +93,5 @@ try:
       fig2 = px.bar(df2b, x='Date', y='Retweeted', color='Sentiment',color_discrete_map=colr)
       fig2.update_xaxes(title_text="")
       st.plotly_chart(fig2)
-except:
-   st.write('No Data Found')
+# except:
+#    st.write('No Data Found')
