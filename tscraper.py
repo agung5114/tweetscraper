@@ -58,32 +58,32 @@ with k4:
 
 # if choice =="Dashboard":
 if st.button("Run Scraping"):
-   try:
+#    try:
 #    st.write(search_term+from_date.strftime("%Y-%m-%d")+end_date.strftime("%Y-%m-%d")+str(numb))
-      data= getData(search_term,from_date,end_date,numb)
-      st.write(f"{len(data.index)} data found")
-      data = data[['Datetime','Username','Likes','Retweeted','Sentiment','Text']]
-      AgGrid(data,columns_auto_size_mode=ColumnsAutoSizeMode.FIT_CONTENTS)
-      csv = convert_df(data)
+   data= getData(search_term,from_date,end_date,numb)
+   st.write(f"{len(data.index)} data found")
+   data = data[['Datetime','Username','Likes','Retweeted','Sentiment','Text']]
+   AgGrid(data,columns_auto_size_mode=ColumnsAutoSizeMode.FIT_CONTENTS)
+   csv = convert_df(data)
 
-      st.download_button(
-      "Press to Download",
-      csv,
-      "file.csv",
-      "text/csv",
-      key='download-csv'
-      )
-      c1, c2 = st.columns((1, 1))
-      with c1:
-         df1 = data
-         fig1 = px.pie(df1, names='Sentiment', values='Retweeted', color='Sentiment', hole=.6)
-         st.plotly_chart(fig1)
+   st.download_button(
+   "Press to Download",
+   csv,
+   "file.csv",
+   "text/csv",
+   key='download-csv'
+   )
+   c1, c2 = st.columns((1, 1))
+   with c1:
+      df1 = data
+      fig1 = px.pie(df1, names='Sentiment', values='Retweeted', color='Sentiment', hole=.6)
+      st.plotly_chart(fig1)
 
-      with c2:
-         data['Date'] = pd.to_datetime(data['Datetime']).dt.date
-         df2b = data.groupby(by=['Sentiment','Date'],as_index=False).agg({'Retweeted':'sum'})
-         fig2 = px.bar(df2b, x='Province', y='Total', color='Disaster')
-         fig2.update_xaxes(title_text="")
-         st.plotly_chart(fig2)
-   except:
-      st.write('No Data Found')
+   with c2:
+      data['Date'] = pd.to_datetime(data['Datetime']).dt.date
+      df2b = data.groupby(by=['Sentiment','Date'],as_index=False).agg({'Retweeted':'sum'})
+      fig2 = px.bar(df2b, x='Province', y='Total', color='Disaster')
+      fig2.update_xaxes(title_text="")
+      st.plotly_chart(fig2)
+#    except:
+#       st.write('No Data Found')
