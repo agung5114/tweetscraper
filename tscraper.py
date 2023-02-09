@@ -110,7 +110,7 @@ if choice == "Daily Trends":
    topiclist = get_data('https://maindata.mofdac.id/list_keywords')
    topic = st.selectbox("Select Menu", topiclist['keyword'])
    seldate = st.date_input("choose date")
-   dft = get_data(f"https://maindata.mofdac.id/{topic}/{seldate}")
+   dft = get_data(f"https://maindata.mofdac.id/dailyretweet/{topic}/{seldate}")
 
    # dft['Date'] = dft['Datetime'].apply(lambda x : pd.to_datetime(str(x)))
    dft['Datetime'] = dft['Datetime'].astype('str')
