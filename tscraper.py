@@ -113,9 +113,10 @@ if choice == "Daily Trends":
    dft = get_data(f"https://maindata.mofdac.id/dailyretweet/{topic}/{seldate}")
 
    # dft['Date'] = dft['Datetime'].apply(lambda x : pd.to_datetime(str(x)))
-   dft['Datetime'] = dft['Datetime'].astype('str')
-   dft['Date'] = dft['Datetime'].str[:10]
+#    dft['Datetime'] = dft['Datetime'].astype('str')
+#    dft['Date'] = dft['Datetime'].str[:10]
    # dft['Date'] = dft['Datetime'].dt.normalize()
+   dft['Date'] = pd.to_datetime(dft['Datetime']).dt.date
    dft['count'] = 1
    df = dft
    # df = dft.groupby(by=['Sentiment','Date'],as_index=False)['count'].sum()
