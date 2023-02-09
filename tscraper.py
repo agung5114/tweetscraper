@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 # import pickle 
-from st_aggrid import AgGrid
+# from st_aggrid import AgGrid
+from st_aggrid import AgGrid, GridOptionsBuilder, ColumnsAutoSizeMode
 from urllib.request import urlopen
 import json
 # from PIL import Image
