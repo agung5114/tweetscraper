@@ -61,6 +61,7 @@ if st.button("Run Scraping"):
 #    st.write(search_term+from_date.strftime("%Y-%m-%d")+end_date.strftime("%Y-%m-%d")+str(numb))
    data= getData(search_term,from_date,end_date,numb)
    st.write(f"{len(data.index)} data found")
+   data = data[['Datetime','Username','Likes','Retweeted','Sentiment','Text']]
    AgGrid(data)
    csv = convert_df(data)
 
