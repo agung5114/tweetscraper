@@ -75,8 +75,9 @@ if st.button("Run Scraping"):
       )
    except:
       st.write('No Data Found')
+      data = []
 
-if data:
+if data !=[]:
    c1, c2 = st.columns((1, 1))
    with c1:
       df1 = data
