@@ -111,48 +111,51 @@ if choice == "Daily Trends":
    topic = st.selectbox("Select Menu", topiclist['keyword'])
    seldate = st.date_input("choose date")
    dft = get_data(f"https://maindata.mofdac.id/dailyretweet/{topic}/{seldate}")
-   st.write(dft)
-   # dft['Date'] = dft['Datetime'].apply(lambda x : pd.to_datetime(str(x)))
-#    dft['Datetime'] = dft['Datetime'].astype('str')
-#    dft['Date'] = dft['Datetime'].str[:10]
-   # dft['Date'] = dft['Datetime'].dt.normalize()
-   dft['Date'] = pd.to_datetime(dft['Datetime']).dt.date
-   dft['count'] = 1
-   df = dft
-   # df = dft.groupby(by=['Sentiment','Date'],as_index=False)['count'].sum()
-   cc1, cc2 = st.columns((1, 1))
-   with cc1:
-      fig1 = px.line(df,
-               x='Date',
-               y='Retweeted',
-               color='Username',
-               color_discrete_map=sentcolor,
-#                title=gtitle,
-               labels={'x': 'Time', 'y': 'Number of Tweet'}
-               )
+   try:
+      st.write(dft)
+      # dft['Date'] = dft['Datetime'].apply(lambda x : pd.to_datetime(str(x)))
+   #    dft['Datetime'] = dft['Datetime'].astype('str')
+   #    dft['Date'] = dft['Datetime'].str[:10]
+      # dft['Date'] = dft['Datetime'].dt.normalize()
+      dft['Date'] = pd.to_datetime(dft['Datetime']).dt.date
+      dft['count'] = 1
+      df = dft
+      # df = dft.groupby(by=['Sentiment','Date'],as_index=False)['count'].sum()
+      cc1, cc2 = st.columns((1, 1))
+      with cc1:
+         fig1 = px.line(df,
+                  x='Date',
+                  y='Retweeted',
+                  color='Username',
+                  color_discrete_map=colr,
+   #                title=gtitle,
+                  labels={'x': 'Time', 'y': 'Number of Tweet'}
+                  )
 
-      fig1.update_layout(
-      title={
-         'font_size': 24,
-         'xanchor': 'center',
-         'x': 0.5
-      })
-      st.plotly_chart(fig1)
-   with cc2:
-      pie = px.pie(df[['Sentiment','count']],
-               names='Sentiment',
-               values='count',
-               color='Sentiment',
-               color_discrete_map=colr,
-               title=gtitle,
-               )
-
-      pie.update_layout(
-        title={
+         fig1.update_layout(
+         title={
             'font_size': 24,
             'xanchor': 'center',
             'x': 0.5
-        })
-      st.plotly_chart(pie)
-      
+         })
+         st.plotly_chart(fig1)
+      with cc2:
+         pie = px.pie(df[['Sentiment','count']],
+                  names='Sentiment',
+                  values='count',
+                  color='Sentiment',
+                  color_discrete_map=colr,
+                  title=gtitle,
+                  )
+
+         pie.update_layout(
+           title={
+               'font_size': 24,
+               'xanchor': 'center',
+               'x': 0.5
+           })
+         st.plotly_chart(pie)
+   except:
+      pass
+   
    st.dataframe(df)
