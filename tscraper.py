@@ -70,8 +70,8 @@ if st.button("Run Scraping"):
    gb.configure_grid_options(domLayout='normal')
    gO = gb.build()
    AgGrid(data,columns_auto_size_mode=ColumnsAutoSizeMode.FIT_CONTENTS,gridOptions =gO)
+   st.empty()
    csv = convert_df(data)
-
    st.download_button(
    "Press to Download",
    csv,
@@ -79,6 +79,8 @@ if st.button("Run Scraping"):
    "text/csv",
    key='download-csv'
    )
+
+try:
    c1, c2 = st.columns((1, 1))
    with c1:
       df1 = data
@@ -91,5 +93,5 @@ if st.button("Run Scraping"):
       fig2 = px.bar(df2b, x='Date', y='Retweeted', color='Sentiment',color_discrete_map=colr)
       fig2.update_xaxes(title_text="")
       st.plotly_chart(fig2)
-#    except:
-#       st.write('No Data Found')
+except:
+   st.write('No Data Found')
