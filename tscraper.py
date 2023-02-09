@@ -38,7 +38,7 @@ def getData(keyword,start,end,n):
     start = from_date.strftime("%Y-%m-%d")
     end = end_date.strftime("%Y-%m-%d")
     number = n
-    url = f"https://mofdac.id/livesearch/{searchtopic}/{start}/{end}/{number}"
+    url = f"https://maindata.mofdac.id/livesearch/{searchtopic}/{start}/{end}/{number}"
     response = urlopen(url)
     data_json = json.loads(response.read())
     df = pd.DataFrame.from_dict(data_json['data'])
@@ -57,19 +57,19 @@ with k4:
 # if choice =="Dashboard":
 if st.button("Run Scraping"):
 #     try:
-   st.write(search_term+from_date.strftime("%Y-%m-%d")+end_date.strftime("%Y-%m-%d")+str(numb))
-#    data= getData(search_term,from_date,end_date,numb)
-#    st.write(f"{len(data.index)} data found")
-#    AgGrid(data)
-#    csv = convert_df(data)
+#    st.write(search_term+from_date.strftime("%Y-%m-%d")+end_date.strftime("%Y-%m-%d")+str(numb))
+   data= getData(search_term,from_date,end_date,numb)
+   st.write(f"{len(data.index)} data found")
+   AgGrid(data)
+   csv = convert_df(data)
 
-#    st.download_button(
-#    "Press to Download",
-#    csv,
-#    "file.csv",
-#    "text/csv",
-#    key='download-csv'
-#    )
+   st.download_button(
+   "Press to Download",
+   csv,
+   "file.csv",
+   "text/csv",
+   key='download-csv'
+   )
 #     except:
 #         st.subheader("No Data Found")
     
