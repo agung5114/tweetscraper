@@ -65,7 +65,11 @@ if st.button("Run Scraping"):
    data= getData(search_term,from_date,end_date,numb)
    st.write(f"{len(data.index)} data found")
    data = data[['Datetime','Username','Likes','Retweeted','Sentiment','Text']]
-   AgGrid(data,columns_auto_size_mode=ColumnsAutoSizeMode.FIT_CONTENTS)
+   gb = GridOptionsBuilder.from_dataframe(data)
+   gb.configure_pagination(paginationAutoPageSize=False, paginationPageSize=10)
+   gb.configure_grid_options(domLayout='normal')
+   gO = gb.build()
+   AgGrid(data,columns_auto_size_mode=ColumnsAutoSizeMode.FIT_CONTENTS,gridOptions =gO)
    csv = convert_df(data)
 
    st.download_button(
