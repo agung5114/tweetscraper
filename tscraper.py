@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 # import pickle 
 from st_aggrid import AgGrid
+from urllib.request import urlopen
 # from PIL import Image
 
 import snscrape.modules.twitter as sntwitter
