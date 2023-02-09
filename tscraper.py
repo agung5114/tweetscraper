@@ -112,7 +112,7 @@ if choice == "Daily Trends":
    seldate = st.date_input("choose date")
    dft = get_data(f"https://maindata.mofdac.id/dailyretweet/{topic}/{seldate}")
    try:
-      st.write(dft)
+#       st.write(dft)
       # dft['Date'] = dft['Datetime'].apply(lambda x : pd.to_datetime(str(x)))
    #    dft['Datetime'] = dft['Datetime'].astype('str')
    #    dft['Date'] = dft['Datetime'].str[:10]
