@@ -146,4 +146,5 @@ if choice == "Daily Trends":
             'x': 0.5
         })
       st.plotly_chart(pie)
-    st.dataframe(df)
+      
+   st.dataframe(df)
